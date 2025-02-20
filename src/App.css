@@ -1,0 +1,122 @@
+/* App.css */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(58, 91, 120), rgb(111, 169, 172));
+  color: white;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styles */
+button {
+  background: linear-gradient(135deg, rgb(14, 207, 233), rgb(17, 66, 229));
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Input Styles */
+input {
+  background: linear-gradient(135deg, rgb(66, 197, 214), rgb(80, 116, 235));
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  width: 250px;
+  text-align: center;
+  outline: none;
+}
+
+/* Weather Card */
+.weather-card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgb(66, 152, 228), rgb(134, 181, 184));
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: white;
+  font-family: "Arial", sans-serif;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* Style for h2 with border */
+.card h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  padding: 8px;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: inline-block;
+  width: 80%;
+  text-align: center;
+  background: linear-gradient(135deg, rgb(66, 197, 214), rgb(80, 116, 235));
+}
+
+/* Style for h5 with border */
+.card h5 {
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 6px;
+  border: 1px solid white;
+  border-radius: 8px;
+  display: inline-block;
+  width: 90%;
+  opacity: 0.9;
+  background: linear-gradient(135deg, rgb(66, 197, 214), rgb(80, 116, 235));
+}
+.Inputfield {
+  border-radius: 10px;
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-size: 25px;
+  margin: 10px;
+}
+.btn {
+  border: 0px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
