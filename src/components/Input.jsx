@@ -3,14 +3,26 @@ import { useWeather } from "../context/Context";
 
 function Input() {
   const weather = useWeather();
+  const { searchCity, setSearchCity, suggestions, fetchCitySuggestions } =
+    useWeather();
+
   console.log(weather, "weather input file");
+  const handleInputChange = (e) => {
+    setSearchCity(e.target.value);
+    fetchCitySuggestions(e.target.value);
+  };
+
   return (
-    <input
-      className="Inputfield"
-      value={weather.searchCity || ""}
-      placeholder="Search City "
-      onChange={(e) => weather.setSearchCity(e.target.value)}
-    />
+    <div className="input-container">
+      <input
+        className="input-field"
+        value={searchCity || ""}
+        placeholder="Search City"
+        onChange={handleInputChange}
+      />
+
+      {/* Show Dropdown */}
+    </div>
   );
 }
 

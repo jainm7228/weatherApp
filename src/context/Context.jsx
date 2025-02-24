@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getWeatherDataForCity } from "../api";
+import { getCitySuggestion, getWeatherDataForCity } from "../api";
 import { getWeatherDataForLocation } from "../api";
 
 const WeatherContext = createContext();
@@ -10,6 +10,7 @@ export const useWeather = () => {
 export const WeatherProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [searchCity, setSearchCity] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
 
   const fetchData = async () => {
     const response = await getWeatherDataForCity(searchCity);
@@ -19,9 +20,23 @@ export const WeatherProvider = ({ children }) => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log(position);
       getWeatherDataForLocation(
-        (position.coords.latitude, position.coords.longitude)
+        position.coords.latitude,
+        position.coords.longitude
       ).then((data) => setData(data));
     });
+  };
+  const fetchCitySuggestions = async (query) => {
+    if (!query.trim()) {
+      setSuggestions([]);
+      return;
+    }
+    try {
+      const data = await getCitySuggestion(query);
+      setSuggestions(data);
+    } catch (error) {
+      console.error("error fetching city suggetions:", error);
+      setSuggestions([]);
+    }
   };
 
   return (
@@ -33,6 +48,9 @@ export const WeatherProvider = ({ children }) => {
         setSearchCity,
         fetchData,
         fetchCurrentUserLocationData,
+        fetchCitySuggestions,
+        suggestions,
+        setSuggestions,
       }}
     >
       {children}

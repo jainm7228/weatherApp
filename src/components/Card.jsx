@@ -3,17 +3,40 @@ import { useWeather } from "../context/Context";
 
 function Card() {
   const weather = useWeather();
+  const { data } = weather;
+
+  const weatherDetails = {
+    City: (
+      <>
+        {data?.location?.name} <br />
+        {data?.location?.region} <br />
+        {data?.location?.country}
+      </>
+    ),
+    // `${data?.location?.name}
+    // ${data?.location?.region}
+    // ${data?.location?.country}`,
+    "Temperature (°C)": data?.current?.temp_c,
+    "Air Quality (CO)": data?.current?.air_quality?.co,
+    "lat,lon": `${data?.location?.lat},${data?.location?.lon}`,
+    "Local Time": data?.location?.localtime,
+  };
+
   console.log(weather);
   return (
     <div className="card">
-      <img src={weather?.data?.current?.condition?.icon} />
-      <h2>{weather.data?.current?.temp_c}</h2>
-      <h2>{weather.data?.location?.name}</h2>
+      {data?.current?.condition?.icon && (
+        <img src={data.current.condition.icon} alt="Weather Icon" />
+      )}
 
-      <h5>
-        {weather.data?.location?.region}
-        {weather.data?.location?.country}
-      </h5>
+      {Object.entries(weatherDetails).map(([key, value]) =>
+        value ? (
+          <div key={key}>
+            <strong> {key}:</strong>
+            {value}
+          </div>
+        ) : null
+      )}
     </div>
   );
 }
