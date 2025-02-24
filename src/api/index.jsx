@@ -1,5 +1,7 @@
 const baseURL =
   "https://api.weatherapi.com/v1/current.json?key=1942bdb2573547688a362252252002";
+const searchURL =
+  "https://api.weatherapi.com/v1/search.json?key=1942bdb2573547688a362252252002";
 
 export const getWeatherDataForCity = async (city) => {
   try {
@@ -22,15 +24,20 @@ export const getWeatherDataForLocation = async (lat, lon) => {
 };
 
 export const getCitySuggestion = async (query) => {
-  if (!query) return [];
+  if (!query) {
+    console.log("enter is not entered");
+    return [];
+  }
 
   try {
-    const response = await fetch(`${baseURL}&q=${query}`);
+    const response = await fetch(`${searchURL}&q=${query}`);
     const data = await response.json();
 
     if (data && data.length) {
+      console.log(data, "data is suggested");
       return data.map((city) => city.name);
     } else {
+      console.log("unable to suggest");
       return [];
     }
   } catch (error) {

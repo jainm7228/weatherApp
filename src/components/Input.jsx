@@ -3,13 +3,26 @@ import { useWeather } from "../context/Context";
 
 function Input() {
   const weather = useWeather();
-  const { searchCity, setSearchCity, suggestions, fetchCitySuggestions } =
-    useWeather();
+  const {
+    searchCity,
+    setSearchCity,
+    fetchCitySuggestions,
+    suggestions,
+    setSuggestions,
+  } = weather;
 
-  console.log(weather, "weather input file");
+  // console.log(weather, "weather input file");
   const handleInputChange = (e) => {
-    setSearchCity(e.target.value);
-    fetchCitySuggestions(e.target.value);
+    const value = e.target.value;
+    console.log(value, "handle Input value we get ");
+    setSearchCity(value);
+    fetchCitySuggestions(value);
+    // console.log("-----fetching city suggetionss result");
+  };
+  const handleSuggestionClick = (city) => {
+    console.log("----clicked suggestion");
+    setSearchCity(city);
+    setSuggestions([]);
   };
 
   return (
@@ -22,6 +35,19 @@ function Input() {
       />
 
       {/* Show Dropdown */}
+      {suggestions.length > 0 && (
+        <div className="dropdown">
+          {suggestions.map((city, index) => (
+            <div
+              key={index}
+              className="dropdown-item"
+              onClick={() => handleSuggestionClick(city)}
+            >
+              {city}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

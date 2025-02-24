@@ -6,12 +6,17 @@ import { useWeather } from "./context/Context";
 
 function App() {
   const weather = useWeather();
-  const { fetchCurrentUserLocationData, fetchData } = weather;
-  console.log(weather, "---app.jsx weather");
+  const { fetchCurrentUserLocationData, fetchData, suggestions } = weather;
+  // console.log(weather, "---app.jsx weather");
 
   useEffect(() => {
     fetchCurrentUserLocationData();
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [suggestions]);
+
   return (
     <div className="App">
       <h1>Weather Forecast</h1>

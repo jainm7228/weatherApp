@@ -22,7 +22,7 @@ function Card() {
     "Local Time": data?.location?.localtime,
   };
 
-  console.log(weather);
+  // console.log(weather);
   return (
     <div className="card">
       {data?.current?.condition?.icon && (

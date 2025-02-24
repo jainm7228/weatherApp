@@ -33,6 +33,7 @@ export const WeatherProvider = ({ children }) => {
     try {
       const data = await getCitySuggestion(query);
       setSuggestions(data);
+      console.log(data, "data in suggetion");
     } catch (error) {
       console.error("error fetching city suggetions:", error);
       setSuggestions([]);

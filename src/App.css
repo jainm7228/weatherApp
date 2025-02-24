@@ -11,6 +11,30 @@
   text-align: center;
   padding: 20px;
 }
+/* Style for dropdown container */
+.dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  width: 250px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+/* Style for dropdown items */
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: black;
+}
+
+.dropdown-item:hover {
+  background: lightgray;
+}
 
 h1 {
   font-size: 2.5rem;
