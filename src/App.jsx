@@ -6,7 +6,12 @@ import { useWeather } from "./context/Context";
 
 function App() {
   const weather = useWeather();
-  const { fetchCurrentUserLocationData, fetchData, suggestions } = weather;
+  const {
+    fetchCurrentUserLocationData,
+    fetchData,
+    suggestions,
+    fetchSevendays,
+  } = weather;
   // console.log(weather, "---app.jsx weather");
 
   useEffect(() => {
@@ -15,6 +20,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
+    fetchSevendays();
   }, [suggestions]);
 
   return (
@@ -23,7 +29,6 @@ function App() {
       <Input />
       <Button onClick={fetchData} value="Search" />
       <Card />
-      <Button value="Refresh" />
     </div>
   );
 }

@@ -4,9 +4,27 @@ const forecastURL = `${baseURL}/forecast.json?key=${apiKey}`;
 const searchURL = `${baseURL}/search.json?key=${apiKey}`;
 const currentWeatherURL = `${baseURL}/current.json?key=${apiKey}`;
 
+export const getSevenDayForecast = async (city) => {
+  // const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=yes&alerts=no`;
+
+  try {
+    const response = await fetch(
+      `${forecastURL}&q=${city}&days=7&aqi=yes&alerts=no`
+    );
+    if (!response.ok) throw new Error(`API request failed: ${response.status}`);
+
+    const data = await response.json();
+    // data.forecast.forecastday will hold an array of 7 days
+    return data.forecast.forecastday;
+  } catch (error) {
+    console.error("Error fetching 7-day forecast:", error);
+    return [];
+  }
+};
+
 export const getWeatherDataForCity = async (city) => {
   try {
-    const response = await fetch(`${forecastURL}&q=${city}&aqi=yes`);
+    const response = await fetch(`${currentWeatherURL}&q=${city}&aqi=yes`);
 
     return await response.json();
   } catch (error) {
