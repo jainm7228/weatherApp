@@ -46,6 +46,7 @@ const Card = () => {
   const localtime = data?.location?.localtime; // e.g., "2025-02-24 12:09"
 
   const avgTemp = dayForecast?.day?.avgtemp_c;
+  const temp = data?.current?.temp_c;
   const pressure = dayForecast?.day?.avghumidity; // Not exactly pressure, just an example
   const conditionIcon = dayForecast?.day?.condition?.icon;
   const conditionText = dayForecast?.day?.condition?.text;
@@ -64,7 +65,9 @@ const Card = () => {
         )}
 
         <div className="city">{cityName}</div>
+        <div className="day">DAY{currentDayIndex + 1}</div>
 
+        <h2 className="temp">{temp}°C</h2>
         <h2 className="temp">{avgTemp}°C</h2>
 
         <div className="region">
