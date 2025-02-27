@@ -1,11 +1,12 @@
-const baseURL =
-  "https://api.weatherapi.com/v1/current.json?key=1942bdb2573547688a362252252002";
-const searchURL =
-  "https://api.weatherapi.com/v1/search.json?key=1942bdb2573547688a362252252002";
+const apiKey = "3583c0f70d9e4885860111432252502";
+const baseURL = `https://api.weatherapi.com/v1`;
+const forecastURL = `${baseURL}/forecast.json?key=${apiKey}`;
+const searchURL = `${baseURL}/search.json?key=${apiKey}`;
+const currentWeatherURL = `${baseURL}/current.json?key=${apiKey}`;
 
 export const getWeatherDataForCity = async (city) => {
   try {
-    const response = await fetch(`${baseURL}&q=${city}&aqi=yes`);
+    const response = await fetch(`${forecastURL}&q=${city}&aqi=yes`);
 
     return await response.json();
   } catch (error) {
@@ -15,7 +16,9 @@ export const getWeatherDataForCity = async (city) => {
 
 export const getWeatherDataForLocation = async (lat, lon) => {
   try {
-    const response = await fetch(`${baseURL}&q=${lat},${lon}&aqi=yes`);
+    const response = await fetch(
+      `${currentWeatherURL}&q=${lat},${lon}&aqi=yes`
+    );
 
     return await response.json();
   } catch (error) {
