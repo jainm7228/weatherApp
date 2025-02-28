@@ -45,7 +45,7 @@ h1 {
 /* Button Styles */
 button {
   background: linear-gradient(135deg, rgb(14, 207, 233), rgb(17, 66, 229));
-  background-color: rgba(255, 255, 255, 0.2);
+  /* background-color: rgba(119, 25, 25, 0.2); */
   color: white;
   padding: 12px 20px;
   border: none;

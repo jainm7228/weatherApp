@@ -7,6 +7,9 @@ const currentWeatherURL = `${baseURL}/current.json?key=${apiKey}`;
 export const getSevenDayForecast = async (city) => {
   // const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=7&aqi=yes&alerts=no`;
 
+  // `${forecastURL}&q=${city}&days=7&aqi=yes&alerts=no`
+  // https://api.weatherapi.com/v1/forecast.json?key=3583c0f70d9e4885860111432252502&q=rajkot&days=7&aqi=yes&alerts=no`
+
   try {
     const response = await fetch(
       `${forecastURL}&q=${city}&days=7&aqi=yes&alerts=no`

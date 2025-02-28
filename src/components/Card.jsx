@@ -1,3 +1,74 @@
+import React from "react";
+import { useWeather } from "../context/Context";
+
+const Card = () => {
+  const { currentWeather, forecasts, currentDayIndex, data } = useWeather();
+
+  // Wait for data to load
+  if (!currentWeather || forecasts.length === 0) {
+    console.log("currentWeather --->", currentWeather);
+    console.log("forecasts --->", forecasts);
+    return <p>Loading weather data...</p>;
+  }
+
+  // Select the forecast data for the current day index
+  const forecastDay = forecasts[currentDayIndex];
+  const dateObj = new Date(forecastDay.date);
+  const dayOfWeek = dateObj.toLocaleDateString("en-US", { weekday: "long" });
+  // Build the details to display
+  const weatherDetails = {
+    City: data?.location?.name,
+    regionName: data?.location?.region,
+    countryName: data?.location?.country,
+    "Temperature (°C)": currentWeather?.temp_c,
+    "Max Temperature (°C)": forecastDay?.day?.maxtemp_c,
+    "Min Temperature (°C)": forecastDay?.day?.mintemp_c,
+    "air quality": forecastDay?.day?.air_quality?.co,
+    Condition: forecastDay?.day?.condition?.text,
+    Date: forecastDay?.date,
+    Day: dayOfWeek,
+  };
+
+  return (
+    <div className="weather-card">
+      {currentWeather.condition?.icon && (
+        <img
+          src={currentWeather.condition.icon}
+          alt={currentWeather.condition.text}
+          className="weather-icon"
+        />
+      )}
+
+      {Object.entries(weatherDetails).map(([key, value]) =>
+        value ? (
+          <div
+            key={key}
+            className={key}
+            style={{
+              border: "none",
+              borderRadius: 10,
+              background:
+                " linear-gradient(135deg,rgb(14, 207, 233), rgb(17, 66, 229))",
+              padding: 10,
+              gap: 5,
+              margin: 10,
+              display: "flex",
+              flexDirection: "row",
+              transition: "background 0.3s ease",
+
+              justifyContent: "center",
+            }}
+          >
+            <strong>{key}:</strong> {value}
+          </div>
+        ) : null
+      )}
+    </div>
+  );
+};
+
+export default Card;
+
 // import React from "react";
 // import { useWeather } from "../context/Context";
 
@@ -109,55 +180,3 @@
 // };
 
 // export default Card;
-
-import React from "react";
-import { useWeather } from "../context/Context";
-
-const Card = () => {
-  const { currentWeather, forecasts, currentDayIndex, searchCity, data } =
-    useWeather();
-
-  // Wait for data to load
-  if (!currentWeather || forecasts.length === 0) {
-    console.log("currentWeather --->", currentWeather);
-    console.log("forecast --->", forecasts);
-    return <p>Loading weather data...</p>;
-  }
-
-  // Select the forecast data for the current day index
-  const forecastDay = forecasts[currentDayIndex];
-  const dateObj = new Date(forecastDay.date);
-  const dayOfWeek = dateObj.toLocaleDateString("en-US", { weekday: "long" });
-  // Build the details to display
-  const weatherDetails = {
-    City: data?.location?.name,
-    regionName: data?.location?.region,
-    countryName: data?.location?.country,
-    "Temperature (°C)": data?.current?.temp_c,
-    Condition: currentWeather.condition?.text,
-    Date: forecastDay?.date,
-    Day: dayOfWeek,
-  };
-
-  return (
-    <div className="weather-card">
-      {currentWeather.condition?.icon && (
-        <img
-          src={currentWeather.condition.icon}
-          alt={currentWeather.condition.text}
-          className="weather-icon"
-        />
-      )}
-
-      {Object.entries(weatherDetails).map(([key, value]) =>
-        value ? (
-          <div key={key}>
-            <strong>{key}:</strong> {value}
-          </div>
-        ) : null
-      )}
-    </div>
-  );
-};
-
-export default Card;
