@@ -84,6 +84,51 @@ input {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card {
+  background: linear-gradient(to bottom right, #53c1f9, #81f7d8);
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+}
+
+.pagination button {
+  background-color: #eee;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #ccc;
+}
+
+.active-page {
+  background-color: #4287f5 !important;
+  color: #fff;
+}
+
 .card {
   width: 250px;
   padding: 20px;

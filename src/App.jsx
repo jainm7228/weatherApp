@@ -4,6 +4,8 @@ import Card from "./components/Card";
 import Input from "./components/Input";
 import { useWeather } from "./context/Context";
 
+import Pagination from "./components/Pagination";
+
 function App() {
   const weather = useWeather();
   const {
@@ -29,6 +31,7 @@ function App() {
       <Input />
       <Button onClick={fetchData} value="Search" />
       <Card />
+      <Pagination />
     </div>
   );
 }

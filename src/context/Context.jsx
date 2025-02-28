@@ -29,6 +29,8 @@ export const WeatherProvider = ({ children }) => {
       "currentweather state fetchData fn response is :",
       response.current
     );
+    console.log("searchCity --->", searchCity);
+    console.log("data --->", data);
   };
 
   const fetchSevendays = async () => {
